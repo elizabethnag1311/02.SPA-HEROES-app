@@ -1,0 +1,19 @@
+
+    <div class="col animated fadeIn">
+      <div class="card border border-info border-5 border-opacity-25"> 
+        <img src="{{ heroe.img }}" class="card-img-top" alt="{{ heroe.nombre}}">
+        <div class="card-body">
+          <h5 class="card-title h4">{{heroe.nombre}}</h5>
+          <p class="card-text">{{heroe.bio}}</p>
+        </div>
+          <strong class="text-muted mb-1">{{ heroe.aparicion | date: 'y-M'}}</strong>
+
+         <div class="d-grid gap-2">
+          <button 
+          type="button" (click)="verHeroe()" class="btn btn-outline-dark">See more...</button>
+        </div> 
+
+        <!-- <a [routerLink]="['/hero', i]" class="btn btn-outline-dark">Ver mas link...</a> -->
+ </div>
+  </div>
+
