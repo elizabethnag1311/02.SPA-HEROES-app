@@ -49,17 +49,17 @@ export class HeroesService {
       casa: "Marvel"
     },
     {
-      nombre: "Wolverine",
-      bio: "En el universo ficticio de Marvel, Wolverine posee poderes regenerativos que pueden curar cualquier herida, por mortal que ésta sea, además ese mismo poder hace que sea inmune a cualquier enfermedad existente en la Tierra y algunas extraterrestres . Posee también una fuerza sobrehumana, que si bien no se compara con la de otros superhéroes como Hulk, sí sobrepasa la de cualquier humano.",
-      img: "assets/img/wolverine.png",
-      aparicion: "1974-11-01",
-      casa: "Marvel"
-    },
-    {
       nombre: "Thor",
       bio: "Es poseedor del martillo encantado, Mjolnir, que le otorga capacidad de volar y manipular el clima. Thor es físicamente el más fuerte de los asgardianos. Tambien posee una resistencia muy alta a las lesiones físicas que se aproxima a la invulnerabilidad. Tiene la habilidad de viajar en el tiempo. Su resistencia le permitió luchar contra todo el ejército de Gigantes de Hielo durante nueve meses sin ningún tipo de sustento o descanso, ha demostrado la capacidad de regenerar partes heridas de su cuerpo, incluyendo miembros u órganos enteros, con la ayuda de fuerzas mágicas como Mjolnir.",
       img: "assets/img/thor.png",
       aparicion: "1962-08-01",
+      casa: "Marvel"
+    },
+    {
+      nombre: "Wolverine",
+      bio: "En el universo ficticio de Marvel, Wolverine posee poderes regenerativos que pueden curar cualquier herida, por mortal que ésta sea, además ese mismo poder hace que sea inmune a cualquier enfermedad existente en la Tierra y algunas extraterrestres . Posee también una fuerza sobrehumana, que si bien no se compara con la de otros superhéroes como Hulk, sí sobrepasa la de cualquier humano.",
+      img: "assets/img/wolverine.png",
+      aparicion: "1974-11-01",
       casa: "Marvel"
     }
   ];
@@ -74,6 +74,22 @@ export class HeroesService {
    getHeroe( idx: number ){
     return this.heroes[idx]
    }
+   buscarHeroes( termino: string ):Heroe[] {
+
+    let heroesArr:Heroe[] = [];
+    termino = termino.toLowerCase();
+
+    for (let i = 0; i < this.heroes.length; i++) {
+      let heroe = this.heroes[i]
+      let nombre = heroe.nombre.toLowerCase()
+
+      if (nombre.indexOf( termino ) >= 0 ) {
+        heroe.idx = i;
+        heroesArr.push( heroe )
+      }
+    }
+    return heroesArr;
+   }
 }
 
 export interface Heroe{
@@ -82,4 +98,5 @@ export interface Heroe{
   img: string;
   aparicion: string;
   casa: string;
+  idx?: number;
 }
